@@ -91,7 +91,7 @@ function JobListing({
                   <MenubarContent>
                     {filterMenu.options.map((option, optionIdx) => (
                       <MenubarItem
-                        key={optionIdx} {/* Added key here */}
+                        key={optionIdx}
                         className="flex items-center"
                         onClick={() => handleFilter(filterMenu.id, option)}
                       >
@@ -127,14 +127,14 @@ function JobListing({
                   ? jobList.map((jobItem) =>
                     profileInfo?.role === "candidate" ? (
                       <CandidateJobCard
-                        key={jobItem.id} {/* Added key here */}
+                        key={jobItem.id}
                         jobItem={jobItem}
                         profileInfo={profileInfo}
                         jobApplications={jobApplications}
                       />
                     ) : (
                       <EmployerJobCard
-                        key={jobItem.id} {/* Added key here */}
+                        key={jobItem.id} 
                         profileInfo={profileInfo}
                         jobItem={jobItem}
                         jobApplications={jobApplications}
