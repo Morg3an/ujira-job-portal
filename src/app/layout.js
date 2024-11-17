@@ -32,11 +32,12 @@ export default function RootLayout({ children }) {
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
             <Suspense fallback={<Loading />}>
-              <CommonLayout 
-                children={children} 
+              <CommonLayout
                 attribute="class"
                 defaultTheme="system"
-              />
+              >
+                {children}
+              </CommonLayout>
             </Suspense>
           </body>
         </html>

@@ -44,17 +44,15 @@ function Companies({ jobsList }) {
           <div className="lg:col-span-4">
             <div className="container mx-auto p-0 space-y-8">
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3">
-                {createUniqueSetOfCompanies &&
-                createUniqueSetOfCompanies.length > 0 ? (
+                {createUniqueSetOfCompanies && createUniqueSetOfCompanies.length > 0 ? (
                   createUniqueSetOfCompanies.map((companyName) => (
                     <CommonCard
+                      key={companyName} // <-- Added key prop here
                       icon={<JobIcon />}
                       title={companyName}
                       footerContent={
                         <Button
-                          onClick={() =>
-                            handleFilterJobsByCompanyName(companyName)
-                          }
+                          onClick={() => handleFilterJobsByCompanyName(companyName)}
                           className="dark:bg-[#fffa27] h-11 flex items-center justify-center px-5"
                         >
                           See Jobs
@@ -65,6 +63,7 @@ function Companies({ jobsList }) {
                 ) : (
                   <h1>No Companies present!</h1>
                 )}
+
               </div>
             </div>
           </div>

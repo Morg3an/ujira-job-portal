@@ -23,16 +23,18 @@ function CandidateActivity({ jobList, jobApplicants }) {
                         Your Activity
                     </h1>
                     <TabsList>
-                        {uniqueStatusArray.map((status) => (
-                            <TabsTrigger value={status}>{status}</TabsTrigger>
+                        {/* Add key prop to each TabsTrigger */}
+                        {uniqueStatusArray.map((status, index) => (
+                            <TabsTrigger key={index} value={status}>{status}</TabsTrigger>
                         ))}
                     </TabsList>
                 </div>
                 <div className="pb-24 pt-6">
                     <div className="container mx-auto p-0 space-y-8">
                         <div className="flex flex-col gap-4">
-                            {uniqueStatusArray.map((status) => (
-                                <TabsContent value={status}>
+                            {/* Add key prop to each TabsContent */}
+                            {uniqueStatusArray.map((status, index) => (
+                                <TabsContent key={index} value={status}>
                                     {jobList
                                         .filter(
                                             (jobItem) =>
@@ -46,8 +48,9 @@ function CandidateActivity({ jobList, jobApplicants }) {
                                                             jobItem._id === filteredItemByStatus.jobID
                                                     ) > -1
                                         )
-                                        .map((finalFilteredItem) => (
+                                        .map((finalFilteredItem, subIndex) => (
                                             <CommonCard
+                                                key={subIndex} // Add key prop to CommonCard component
                                                 icon={<JobIcon />}
                                                 title={finalFilteredItem?.title}
                                                 description={finalFilteredItem?.companyName}

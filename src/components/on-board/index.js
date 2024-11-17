@@ -1,6 +1,5 @@
-"use client"
+"use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { TabsTrigger } from "@radix-ui/react-tabs";
 import { useState, useEffect } from "react";
 import CommonForm from "../common-form";
 import { candidateOnboardFormControls, employerOnboardFormControls, initialCandidateFormData, initialEmployerFormData } from "@/utils";
@@ -9,115 +8,85 @@ import { createProfileAction } from "@/actions";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseClient = createClient(
-    'https://jxypspeijvdwiiqfqwzo.supabase.co', 
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp4eXBzcGVpanZkd2lpcWZxd3pvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE2NjQ2ODMsImV4cCI6MjA0NzI0MDY4M30.QqPDsMdYOyEJyYAzp54IydIsTI1Eo8mPy7eeYm7NtLA'
-)
-
+    'https://jxypspeijvdwiiqfqwzo.supabase.co',
+    'your-supabase-api-key'
+);
 
 function OnBoard() {
 
     const [currentTab, setCurrentTab] = useState('candidate');
     const [employerFormData, setEmployerFormData] = useState(initialEmployerFormData);
     const [candidateFormData, setCandidateFormData] = useState(initialCandidateFormData);
-    // const [formControls, setFormControls] = useState(employerOnboardFormControls);
     const [file, setFile] = useState(null);
 
     const currentAuthUser = useUser();
-    const {user} = currentAuthUser;
-    //console.log(currentAuthUser);
+    const { user } = currentAuthUser;
 
     function handleFileChange(event) {
         setFile(event.target.files[0]);
-        event.preventDefault()
+        event.preventDefault();
         console.log(event.target.files);
     }
 
     async function handleUploadPdfToSupabase() {
         const { data, error } = await supabaseClient.storage
-          .from("ujira-job-portal")
-          .upload(`/public/${file.name}`, file, {
-            cacheControl: "3600",
-            upsert: false,
+            .from("ujira-job-portal")
+            .upload(`/public/${file.name}`, file, {
+                cacheControl: "3600",
+                upsert: false,
             });
         console.log(data, error);
         if (data) {
-          setCandidateFormData({
-            ...candidateFormData,
-            resume: data.path,
-            kndiCredential: data.path
-          });
+            setCandidateFormData({
+                ...candidateFormData,
+                resume: data.path,
+                kndiCredential: data.path
+            });
         }
     }
 
     useEffect(() => {
         if (file) handleUploadPdfToSupabase();
-    }, [file]);
+    }, [file, handleUploadPdfToSupabase]); // Added handleUploadPdfToSupabase to dependency array
 
     function handleTabChange(value) {
         setCurrentTab(value);
     }
 
-
     function handleEmployerFormValid() {
-        return (
-            employerFormData &&
-            employerFormData.name.trim() !== "" &&
-            employerFormData.companyName.trim() !== "" &&
-            employerFormData.companyRole.trim() !== ""
-        );
-
+        return employerFormData && employerFormData.name.trim() !== "" && employerFormData.companyName.trim() !== "" && employerFormData.companyRole.trim() !== "";
     }
 
     function handleCandidateFormValid() {
         const requiredFields = [
-            "name",
-            "currentCompany",
-            "currentJobLocation",
-            "preferredJobLocation",
-            "currentSalary",
-            "noticePeriod",
-            "skills",
-            "previousCompanies",
-            "totalExperience",
-            "collegeUniversity",
-            "collegeUniversityLocation",
-            "graduationYear",
-            "linkedinProfile",
+            "name", "currentCompany", "currentJobLocation", "preferredJobLocation", "currentSalary",
+            "noticePeriod", "skills", "previousCompanies", "totalExperience", "collegeUniversity",
+            "collegeUniversityLocation", "graduationYear", "linkedinProfile"
         ];
-        
-        return requiredFields.every(
-            (field) => candidateFormData[field] && candidateFormData[field].trim() !== ""
-        );
+        return requiredFields.every((field) => candidateFormData[field] && candidateFormData[field].trim() !== "");
     }
-    
-    
 
     async function createProfile() {
-        const data =
-          currentTab === "candidate"
+        const data = currentTab === "candidate"
             ? {
                 candidateInfo: candidateFormData,
                 role: "candidate",
                 isPremiumUser: false,
                 userId: user?.id,
                 email: user?.primaryEmailAddress?.emailAddress,
-              }
+            }
             : {
                 employerInfo: employerFormData,
                 role: "employer",
                 isPremiumUser: false,
                 userId: user?.id,
                 email: user?.primaryEmailAddress?.emailAddress,
-              };
-    
+            };
+
         await createProfileAction(data, "/onboard");
     }
 
-    console.log(candidateFormData);
-
-
-
-    return(
+    return (
         <div className="bg-white">
             <Tabs value={currentTab} onValueChange={handleTabChange}>
                 <div className="w-full">
@@ -132,7 +101,7 @@ function OnBoard() {
                     </div>
                 </div>
                 <TabsContent value="candidate">
-                    <CommonForm 
+                    <CommonForm
                         action={createProfile}
                         formControls={candidateOnboardFormControls}
                         buttonText={"Onboard as a candidate"}
@@ -143,7 +112,7 @@ function OnBoard() {
                     />
                 </TabsContent>
                 <TabsContent value="employer">
-                    <CommonForm 
+                    <CommonForm
                         formControls={employerOnboardFormControls}
                         buttonText={"Onboard as an employer"}
                         formData={employerFormData}

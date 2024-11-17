@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { membershipPlans } from "@/utils";
 import CommonCard from "../common-card";
 import JobIcon from "../job-icon";
@@ -12,24 +12,18 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-
 const stripePromise = loadStripe(
     "pk_test_51QLxG0AlEPonyFJmbBz6IXyHtBGjbg1iMVtCPfYUHRZWN5gslH4RF61t8bKQGFaeZ3NtbqL00zi5BdNkHqDgkDm400bxoykVP3"
 );
 
-
 function Membership({ profileInfo }) {
     const pathName = useSearchParams();
-
 
     async function handlePayment(getCurrentPlan) {
         const stripe = await stripePromise;
         const extractPriceId = await createPriceIdAction({
             amount: Number(getCurrentPlan?.price),
         });
-
-
-
 
         if (extractPriceId) {
             sessionStorage.setItem("currentPlan", JSON.stringify(getCurrentPlan));
@@ -81,8 +75,7 @@ function Membership({ profileInfo }) {
 
     useEffect(() => {
         if (pathName.get("status") === "success") updateProfile();
-    }, [pathName]);
-
+    }, [pathName, updateProfile]); // Added 'updateProfile' to the dependency array
 
     return (
         <div className="mx-auto max-w-7xl">
@@ -110,6 +103,7 @@ function Membership({ profileInfo }) {
                         {
                             membershipPlans.map((plan, index) =>
                                 <CommonCard
+                                    key={plan.type} // Added key here
                                     icon={
                                         <div className="flex justify-between">
                                             <div>

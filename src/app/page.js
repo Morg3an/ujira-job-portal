@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
+import Image from "next/image"; // Import Image component from next/image
 
 async function Home() {
   const user = await currentUser();
@@ -36,10 +37,13 @@ async function Home() {
               </div>
             </section>
             <section className="relative w-full lg:w-[50%] flex items-center justify-end">
-              <img
+              {/* Replaced <img> with <Image> for optimization */}
+              <Image
                 src="https://utfs.io/f/kY0EVP2voqNXWiYmbwTG1NCvqgKSsF6mLAeYHZ5y3pzOxnJc"
                 alt="Hero"
-                className="h-full w-full object-cover z-10 border-none"
+                layout="fill" // Ensures image covers the space properly
+                objectFit="cover" // Makes sure the image fits within its container
+                className="z-10 border-none"
               />
             </section>
           </div>

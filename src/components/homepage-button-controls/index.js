@@ -9,7 +9,7 @@ function HomepageButtonControls({ user, profileInfo }) {
 
     useEffect(() => {
         router.refresh();
-    }, []);
+    }, [router]); // Added 'router' to the dependency array
 
     return (
         <div className="flex space-x-4">

@@ -60,7 +60,7 @@ function JobListing({
 
       router.push(url, { scroll: false });
     }
-  }, [filterParams, searchParams]);
+  }, [filterParams, searchParams, router]); // Added 'router' to the dependency array
 
   console.log("Filter Menus:", filterParams);
 
@@ -85,28 +85,25 @@ function JobListing({
         <div className="flex items-center">
           {profileInfo?.role === "candidate" ? (
             <Menubar>
-              {filterMenus.map((filterMenu) => (
-                <MenubarMenu>
+              {filterMenus.map((filterMenu, filterMenuIdx) => (
+                <MenubarMenu key={filterMenuIdx}> {/* Added key here */}
                   <MenubarTrigger>{filterMenu.name}</MenubarTrigger>
                   <MenubarContent>
                     {filterMenu.options.map((option, optionIdx) => (
                       <MenubarItem
-                        key={optionIdx}
+                        key={optionIdx} {/* Added key here */}
                         className="flex items-center"
                         onClick={() => handleFilter(filterMenu.id, option)}
                       >
                         <div
-                          className={`h-4 w-4 border rounded border-gray-900 text-indigo-600 ${
-                            filterParams &&
-                            Object.keys(filterParams).length > 0 &&
-                            filterParams[filterMenu.id] &&
-                            filterParams[filterMenu.id].indexOf(option) > -1
+                          className={`h-4 w-4 border rounded border-gray-900 text-indigo-600 ${filterParams &&
+                              Object.keys(filterParams).length > 0 &&
+                              filterParams[filterMenu.id] &&
+                              filterParams[filterMenu.id].indexOf(option) > -1
                               ? "bg-black dark:bg-white"
                               : ""
-                          } 
-                                                                `}
+                            }`}
                         />
-
                         <Label className="ml-3 cursor-pointer text-sm text-gray-600">
                           {option}
                         </Label>
@@ -128,20 +125,22 @@ function JobListing({
               <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
                 {jobList && jobList.length > 0
                   ? jobList.map((jobItem) =>
-                      profileInfo?.role === "candidate" ? (
-                        <CandidateJobCard
-                          jobItem={jobItem}
-                          profileInfo={profileInfo}
-                          jobApplications={jobApplications}
-                        />
-                      ) : (
-                        <EmployerJobCard
-                          profileInfo={profileInfo}
-                          jobItem={jobItem}
-                          jobApplications={jobApplications}
-                        />
-                      ),
-                    )
+                    profileInfo?.role === "candidate" ? (
+                      <CandidateJobCard
+                        key={jobItem.id} {/* Added key here */}
+                        jobItem={jobItem}
+                        profileInfo={profileInfo}
+                        jobApplications={jobApplications}
+                      />
+                    ) : (
+                      <EmployerJobCard
+                        key={jobItem.id} {/* Added key here */}
+                        profileInfo={profileInfo}
+                        jobItem={jobItem}
+                        jobApplications={jobApplications}
+                      />
+                    ),
+                  )
                   : null}
               </div>
             </div>
