@@ -39,7 +39,7 @@ async function Home() {
             <section className="relative w-full lg:w-[50%] flex items-center justify-end">
               {/* Replaced <img> with <Image> for optimization */}
               <Image
-                src="https://utfs.io/f/kY0EVP2voqNXWiYmbwTG1NCvqgKSsF6mLAeYHZ5y3pzOxnJc"
+                src="https://img.freepik.com/free-photo/man-handshaking-his-employer-after-being-accepted-his-new-office-job_23-2149034566.jpg?t=st=1731860428~exp=1731864028~hmac=65c4e7a5ae14e94258b9081c0e813e85a5bf792820ce308b79b4c671b32ab65c&w=826"
                 alt="Hero"
                 layout="fill" // Ensures image covers the space properly
                 objectFit="cover" // Makes sure the image fits within its container

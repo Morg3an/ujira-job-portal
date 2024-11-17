@@ -5,6 +5,7 @@ import Loading from "./loading";
 // import { Inter } from "react"; 
 import CommonLayout from "@/components/common-layout/index";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/react"
 
 
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
                 defaultTheme="system"
               >
                 {children}
+                <Analytics />
               </CommonLayout>
             </Suspense>
           </body>
