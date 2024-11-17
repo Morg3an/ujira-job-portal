@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ujira Job Application and Recruitment Portal
 
-## Getting Started
+## Overview
+Ujira is a comprehensive job application and recruitment portal designed to connect job seekers with licensed nutritionists in Kenya. The platform allows users to register, search for jobs, apply for positions, and receive real-time notifications. Employers can post job listings, verify applicants, and manage applications.
 
-First, run the development server:
+## Features
+- **User Registration and Authentication:** Secure user registration and login using Supabase Auth and Clerk.
+- **Role-Based Access Control:** Distinguish between users, employers, and admins with appropriate permissions.
+- **Job Listings:** Post, search, and manage job listings.
+- **Real-Time Notifications:** Receive notifications for job applications, updates, and more.
+- **Responsive Design:** Optimized for both desktop and mobile devices using Tailwind CSS.
+
+## Tech Stack
+- **Frontend:** React, JavaScript, Tailwind CSS, React Router, Next.js
+- **Backend:** Node.js, Express, Supabase (PostgreSQL), MongoDB
+- **Deployment:** Vercel (Frontend), Heroku (Backend)
+
+## Installation
+
+### Prerequisites
+- Node.js and npm installed on your machine
+- Supabase and MongoDB accounts and project set up
+- Git installed on your machine
+
+### Frontend Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Morg3an/ujira-portal.git
+   cd ujira-portal
+Install dependencies:
+
+```bash
+npm install
+```
+### Create a .env.local file in the root directory and add your Clerk Credentials:
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+CLERK_SECRET_KEY=your-clerk-client-secret-key
+```
+### Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
+### Deploying the app to Vercel:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Link your GitHub repository to Vercel.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Configure the build settings and deploy.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Configure environment variables and deploy.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contact
+For any inquiries, please contact us at mulweyemorgan12@gmail.com.
+
 
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
