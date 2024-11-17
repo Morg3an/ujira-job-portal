@@ -13,7 +13,7 @@ Ujira is a comprehensive job application and recruitment portal designed to conn
 ## Tech Stack
 - **Frontend:** React, JavaScript, Tailwind CSS, React Router, Next.js
 - **Backend:** Node.js, Express, Supabase (PostgreSQL), MongoDB
-- **Deployment:** Vercel (Frontend), Heroku (Backend)
+- **Deployment:** Vercel
 
 ## Installation
 
