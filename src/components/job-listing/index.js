@@ -91,7 +91,7 @@ function JobListing({
                   <MenubarContent>
                     {filterMenu.options.map((option, optionIdx) => (
                       <MenubarItem
-                        key={optionIdx}
+                        key={optionIdx} 
                         className="flex items-center"
                         onClick={() => handleFilter(filterMenu.id, option)}
                       >
