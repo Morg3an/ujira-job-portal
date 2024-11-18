@@ -9,7 +9,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabaseClient = createClient(
     'https://jxypspeijvdwiiqfqwzo.supabase.co',
-    'your-supabase-api-key'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp4eXBzcGVpanZkd2lpcWZxd3pvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE2NjQ2ODMsImV4cCI6MjA0NzI0MDY4M30.QqPDsMdYOyEJyYAzp54IydIsTI1Eo8mPy7eeYm7NtLA'
 );
 
 function OnBoard() {
