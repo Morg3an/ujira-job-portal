@@ -13,11 +13,8 @@ Ujira is a comprehensive job application and recruitment portal designed to conn
 ## Tech Stack
 - **Frontend:** React, JavaScript, Tailwind CSS, React Router, Next.js
 - **Backend:** Node.js, Express, Supabase (PostgreSQL), MongoDB
-<<<<<<< HEAD
 - **Deployment:** Vercel.
-=======
 - **Deployment:** Vercel
->>>>>>> bc2287fba08fc5b19fdbcb2493d481ce392bf27e
 
 ## Installation
 
@@ -29,8 +26,8 @@ Ujira is a comprehensive job application and recruitment portal designed to conn
 ### Frontend Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Morg3an/ujira-portal.git
-   cd ujira-portal
+   git clone https://github.com/Morg3an/ujira-job-portal.git
+   cd ujira-job-portal
 Install dependencies:
 
 ```bash
